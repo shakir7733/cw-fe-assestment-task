@@ -1,21 +1,38 @@
 import SearchInputGroup from "../feature/search-input-group";
 import heroBg from "@/assets/images/hero-bg.png";
 
+/**
+ * HeroSection Component
+ * - Displays a hero image background with overlayed title and search input.
+ * - Responsive design for various screen sizes.
+ */
 export const HeroSection = () => {
+    /**
+     * Handles search input submission.
+     * @param search - The search string entered by the user.
+     */
     const onSearch = (search: string) => {
         console.log(search);
-        // implementing the search logic is not required for this task
+        // Search logic is not required for this task.
     };
 
     return (
-        <div className="relative w-full mx-auto overflow-hidden p-4">
-            <img alt="Abstract geometric patterns hero image " src={heroBg} className="w-full h-120 object-cover rounded-xl" />
-            <div className="absolute inset-4 bg-black/10 flex flex-col items-center justify-center text-center px-4 gap-8">
-                <h1 className="text-3xl md:text-5xl max-w-3xl font-bold text-white leading-tight">
+        <section className="relative w-full mx-auto overflow-hidden p-2 md:p-4">
+            {/* Hero background image */}
+            <img
+                alt="Abstract geometric patterns hero image"
+                src={heroBg}
+                className="w-full h-48 md:h-90 lg:h-120 object-cover rounded-xl"
+            />
+            {/* Overlay with title and search input */}
+            <div className="absolute inset-2 md:inset-4 flex flex-col items-center justify-center text-center px-2 md:px-4 gap-6 md:gap-8 bg-black/30 rounded-xl">
+                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl max-w-2xl md:max-w-3xl font-bold text-white leading-tight drop-shadow-lg">
                     Search for words, phrases and meanings
                 </h1>
-                <SearchInputGroup initialValue="" onSearch={onSearch} />
+                <div className="w-full max-w-md">
+                    <SearchInputGroup initialValue="" onSearch={onSearch} />
+                </div>
             </div>
-        </div>
+        </section>
     );
 }
