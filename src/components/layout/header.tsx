@@ -1,34 +1,29 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar"
 import { Search } from "lucide-react"
 import { Input } from "../ui/input"
-
+import logo from "@/assets/images/logo.png"
+import avatarImage from "@/assets/images/avatar.png"
 
 export const Header = () => {
     return (
-        <header className="flex items-center justify-between px-6 py-4 bg-black border-b border-gray-800">
-            <div className="flex items-center gap-2">
-                <img src="/task1/logo.png" alt="Logo" className="w-10 h-10" />
+        <header className="flex items-center justify-between px-10 py-4 bg-background border-b border-muted-foreground">
+            <div className="flex items-center gap-4">
+                <img src={logo} alt="Logo" className="w-4 h-4" />
                 <div className="text-white font-semibold text-lg">Wortionary</div>
             </div>
 
-            <div className="flex items-center gap-4">
-                <div style={{ position: "relative" }}>
-                    <span>
-                        <span>
-                            <span className="absolute left-3 top-2.5">
-                                <Search className="text-gray-400 text-sm" />
-                            </span>
-                        </span>
-                    </span>
+            <div className="flex items-center gap-8">
+                <div className="bg-muted relative flex items-center w-40 h-10 rounded-lg pl-4 pr-1">
+                    <Search className="text-muted-foreground text-sm" />
                     <Input
                         type="text"
-                        value="search"
-                        className="pl-9 bg-gray-800 text-white border-none focus:ring-0 rounded-full"
+                        placeholder="Search"
+                        className="text-muted-foreground border-none focus-visible:ring-0 focus-visible:ring-offset-0 rounded-full h-9 placeholder:text-muted-foreground placeholder:text-[16px]"
                     />
                 </div>
-                <Avatar style={{ width: "32px", height: "32px" }}>
-                    <AvatarImage src="/avatar.jpg" />
-                    <AvatarFallback>U</AvatarFallback>
+                <Avatar className="w-10 h-10"> {/* Use Tailwind classes for size instead of inline css */}
+                    <AvatarImage src={avatarImage} alt="User Avatar" />
+                    <AvatarFallback>User Avatar</AvatarFallback>
                 </Avatar>
             </div>
         </header>
