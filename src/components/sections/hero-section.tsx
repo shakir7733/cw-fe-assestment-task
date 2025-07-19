@@ -7,14 +7,6 @@ import heroBg from "@/assets/images/hero-bg.png";
  * - Responsive design for various screen sizes.
  */
 export const HeroSection = () => {
-    /**
-     * Handles search input submission.
-     * @param search - The search string entered by the user.
-     */
-    const onSearch = (search: string) => {
-        console.log(search);
-        // Search logic is not required for this task.
-    };
 
     return (
         <section className="relative w-full mx-auto overflow-hidden p-2 md:p-4">
@@ -30,7 +22,7 @@ export const HeroSection = () => {
                     Search for words, phrases and meanings
                 </h1>
                 <div className="w-full max-w-md">
-                    <SearchInputGroup initialValue="" onSearch={onSearch} />
+                    <SearchInputGroup />
                 </div>
             </div>
         </section>

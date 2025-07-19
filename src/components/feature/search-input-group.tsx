@@ -1,27 +1,17 @@
 import { Search } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { useSearch } from "@/contexts/search-context";
 
 
-
-
-interface SearchInputGroupProps {
-    initialValue: string;
-    onSearch: (search: string) => void;
-}
-
-export const SearchInputGroup = (props: SearchInputGroupProps) => {
-    const { initialValue, onSearch } = props;
-    const [searchTerm, setSearchTerm] = useState<string>(initialValue);
-
+export const SearchInputGroup = () => {
+    const { searchTerm, setSearchTerm, triggerSearch } = useSearch();
 
     // useCallback to memoize the search handler function
     const handleSearch = useCallback(() => {
-        // Only log the search term as per assignment, or trigger actual search logic
-        console.log("Searching for:", searchTerm);
-        onSearch(searchTerm); // Pass the current search term to the parent
-    }, [searchTerm, onSearch]); // Dependencies ensure it re-creates only if searchTerm or onSearch changes
+        triggerSearch(searchTerm);
+    }, [searchTerm, triggerSearch]); // Dependencies ensure it re-creates only if searchTerm or onSearch changes
 
     // Handler for Enter key press
     const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -40,12 +30,8 @@ export const SearchInputGroup = (props: SearchInputGroupProps) => {
                 onKeyDown={handleKeyPress} // Add key press handler
                 type="text"
                 placeholder="Type to search..."
+                aria-label="Search input field" // Added for accessibility
                 className="flex-1 bg-transparent border-none text-white placeholder:text-muted-foreground placeholder:font-light placeholder:text-[16px] focus-visible:ring-0 focus-visible:ring-offset-0 h-10" // Use focus-visible and explicit height
-            // value={innerValue}
-            // onChange={(e) => setInnerValue(e.target.value)}
-            // type="text"
-            // placeholder="Type to search..."
-            // className="flex-1 bg-transparent border-none text-white placeholder:text-muted-foreground placeholder:font-light placeholder:text-[16px]"
             />
             <Button
                 onClick={handleSearch} // Trigger search on button click
